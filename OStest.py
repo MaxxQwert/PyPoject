@@ -1,8 +1,12 @@
 import os
-for dirpath, dirnames, filenames in os.walk("."):
-    # перебрать каталоги
-    for dirname in dirnames:
-        print("Каталог:", os.path.join(dirpath, dirname))
-    # перебрать файлы
+pypath = []
+for dirpath, dirnames, filenames in os.walk("main"):
     for filename in filenames:
-        print("Файл:", os.path.join(dirpath, filename))
+        if filename.endswith('py'):
+            pypath.append(dirpath)
+            break
+pypath.sort()
+cont = '\n'.join(pypath)
+print(cont)
+with open('pypath.txt', 'w') as f:
+    f.write(cont)
